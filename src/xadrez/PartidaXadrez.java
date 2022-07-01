@@ -1,6 +1,5 @@
 package xadrez;
 
-import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -40,15 +39,24 @@ public class PartidaXadrez {
 	}
 	
 	
-	//método iniciar da partida de xadrez
-	//responsável por iniciar a partida colocando as peças no tabuleiro
-	
-	private void iniciarPartida() {
-		tabuleiro.localPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
-		tabuleiro.localPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0, 4));
-		tabuleiro.localPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(7, 4));
+	//instanciaçao da operação paraPosicao informando as coordenadas do sistema do xadrez e nao o sistema da matriz
+	//esse método é uma operação de colocar pecas passando as posicoes nas coordenadas do xadrez
+	private void novaPosicaoPeca(char coluna, int linha, PecaXadrez peca) {
+		//método chamara o tabuleiro passando a peca por uma instanciacao da posicao do xadrez pelos dados para uma posicao de matriz
+		tabuleiro.localPeca(peca, new PosicaoXadrez(coluna, linha).paraPosicao());
 		
 	}
 	
+	//método iniciar da partida de xadrez
+	//responsável por iniciar a partida colocando as peças no tabuleiro
+	private void iniciarPartida() {
+		//colocar uma peca y da cor z na posicao x 
+		novaPosicaoPeca('b', 6, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		
+	}
+	
+
 	
 }
