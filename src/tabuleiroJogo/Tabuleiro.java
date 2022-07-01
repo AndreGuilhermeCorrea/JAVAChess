@@ -64,4 +64,20 @@ public class Tabuleiro {
 		//métoro retornara a peca pela posicao
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
+	
+	//método para colocar peca na posicao
+	
+	public void localPeca(Peca peca, Posicao posicao) {
+		
+		//na matriz de peca do tabuleiro instanciada no construtor
+		//atribuir na matriz de pecas a peca que veio como argumento
+		//matriz na posicao dada atribuir a ela a peca
+		
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+		//ou seja ela passa a para a seguinte posição informada no método
+		//a posicao da peca é acessivel diretamente pois esta como protect, por estar no mesmo pacote torna-se possivel acessar livremente a posicao da peca
+		peca.posicao = posicao;
+		
+ 		
+	}
 }
