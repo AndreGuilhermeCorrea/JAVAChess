@@ -51,10 +51,21 @@ public class PartidaXadrez {
 	//responsável por iniciar a partida colocando as peças no tabuleiro
 	private void iniciarPartida() {
 		//colocar uma peca y da cor z na posicao x 
-		novaPosicaoPeca('b', 6, new Torre(tabuleiro, Cor.BRANCO));
-		novaPosicaoPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
-		novaPosicaoPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+	
 		
+		novaPosicaoPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+
+		novaPosicaoPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('d', 7, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 	
 
