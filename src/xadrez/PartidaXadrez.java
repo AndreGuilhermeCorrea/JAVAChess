@@ -1,5 +1,7 @@
 package xadrez;
 
+import tabuleiroJogo.Peca;
+import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -19,9 +21,9 @@ public class PartidaXadrez {
 		tabuleiro = new Tabuleiro(8, 8);
 		//iniciar a partida no construtor
 		iniciarPartida();
-		
 	}
 	
+
 	//método para retornar uma matriz de pecas de xadrez nessa partida
 	//para que o programa conheca apenas a camada de xadrez e nao a camada de tabuleiro
 	public PecaXadrez[][] getPecas(){
@@ -36,6 +38,43 @@ public class PartidaXadrez {
 		}
 		//terminado o for retornará a matriz (mat) de pecas de xadrez
 		return mat;
+	}
+	
+	
+	//método para executar o movimento do xadrez com posição de origem, posicao de destino retornando entao uma posicao capturada
+	public PecaXadrez executarMovimentoXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
+		//conversao das 02 posicoes para posicao da matriz
+		Posicao origem = posicaoOrigem.paraPosicao();
+		Posicao destino = posicaoDestino.paraPosicao();
+		//validacao da posicao de origem, caso nao exista será lancado uma excessão atravez da implementacao da operaçao no metodo abaixo
+		validacaoPosicaoOrigem(origem);
+		//caso nao ocorra exceção a variavel declarada com o nome capturaPeca receberá o resultado da operacao fazermover responsavel por realizar o movimento da peca
+		Peca capturaPeca = fazerMover(origem, destino);
+		//retorno da peca capturada por meio de um downCasting para pecaXadrez pois essa peca capturada era do tipo peca
+		return (PecaXadrez)capturaPeca;
+		
+	}
+	
+	//implementação da operacao fazerMover 
+	private Peca fazerMover(Posicao origem, Posicao destino) {
+		//saída da peca na posicao de origem
+		Peca p = tabuleiro.removePeca(origem); 
+		//remover possivel peca que estiver na posicao de destino passando portanto a ser a peca capturada
+		Peca capturaPeca = tabuleiro.removePeca(destino);
+		//entrada da peca de origem para peca de destino
+		tabuleiro.localPeca(p, destino);
+		//programa entao retorna a peca capturada
+		return capturaPeca;
+	}
+	
+	
+	//implementação da operacao validacaoPosicaoOrigem recebendo uma posicao
+	private void validacaoPosicaoOrigem(Posicao posicao) {
+		//teste negado, ou seja se nao existir peca na posicao sera lancado a exceção
+		if (!tabuleiro.pecaNaPosicao(posicao)) {
+			throw new ExcecaoXadrez("Existe uma peca na posicao de origem!!!");
+		}
+		
 	}
 	
 	

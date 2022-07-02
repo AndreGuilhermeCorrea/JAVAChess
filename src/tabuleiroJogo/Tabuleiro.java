@@ -96,6 +96,33 @@ public class Tabuleiro {
 		// no mesmo pacote torna-se possivel acessar livremente a posicao da peca
 		peca.posicao = posicao;
 	}
+	
+	
+	
+	//método puclic retornando uma peça chamado removePeca que recebe a posicao como argumento
+	public Peca removePeca(Posicao posicao) {
+		//programação defensiva com teste
+		 // se essa posicao nao existir será lancado uma nova exceção por meio de um teste if
+		if (!posicaoExistente(posicao))
+		throw new ExcecaoTabuleiro("Essa posição nao existe!!!");
+		//teste para saber se a peca na posicao é igual a nulo
+		//ou seja se for verdade nao existe peca albuma na posicao
+		if (peca(posicao) == null) {
+			//retornando simplesmente o valor nulo
+			return null; 
+		}
+		//caso isso nao ocorra simplesmente sera retirado a peca do tabuleiro por meio de um procedimento
+		//declaracao de variável aux de peca recebendo a peca que estiver no tabuleiro nessa posicao onde a variavel aux aponta pra ela
+		Peca aux = peca(posicao);
+		//essa peca aux agora passa a ser nula, ou seja retirada do tabuleiro, nao possui mais posicao
+		aux.posicao = null;
+		//agora sera acessada a matriz de pecas na linha e na coluna recebera nulo
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		//o metodo portanto retorna a variável aux que contem a peca retirada
+		return aux;
+		
+	}
+	
 
 	// método auxiliar posicaoExistente receber uma linha e uma coluna
 	// tornando portanto realizar o teste pela linha e coluna ao invés da posiçao

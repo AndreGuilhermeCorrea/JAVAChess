@@ -1,5 +1,6 @@
 package tabuleiroJogo;
 
+//classe para tratamento das exceçoes extendida para exceçoes 
 public class ExcecaoTabuleiro extends RuntimeException{
 
 	
