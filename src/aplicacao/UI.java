@@ -30,6 +30,14 @@ public class UI {
 	public static final String ANSI_AZULCLARO_FUNDO = "\u001B[46m";
 	public static final String ANSI_BRANCO_FUNDO = "\u001B[47m";
 	
+	//método para limpar terminal ao realizar jogada
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	
+	public static void limpaTerminal() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+	
 	//método para ler a posicao do usuario atravéz do scanner do programa principal
 	//scanner instanciado no programa principal passando como argumento nesse método
 		public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
