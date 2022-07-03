@@ -20,7 +20,7 @@ public class Programa {
 		//declaracao da lista de pecas
 		List<PecaXadrez> pecaCapturada = new ArrayList<>();
 		
-		while (true) {
+		while (!partidaXadrez.getXequeMate()) {
 			
 			//bloco para tratamento de exceçoes 
 			try {
@@ -67,6 +67,8 @@ public class Programa {
 				
 			}
 		}
+		UI.limpaTerminal();
+		UI.imprimirPartida(partidaXadrez, pecaCapturada);
 		
 	}
 

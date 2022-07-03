@@ -86,10 +86,17 @@ public class UI {
 		System.out.println();
 
 		System.out.println("Turno: " + partidaXadrez.getTurno());
-		System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
-		// teste partida em xeque e impressão
-		if (partidaXadrez.getXeque()) {
-			System.out.println("XEQUE!!!");
+		//teste para se existe xequemate
+		if (!partidaXadrez.getXequeMate()) {
+			System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+			// teste partida em xeque e impressão
+			if (partidaXadrez.getXeque()) {
+				System.out.println("XEQUE!!!");
+			}
+		}
+		else {
+			System.out.println("XEQUE MATE!!!");
+			System.out.println(partidaXadrez.getJogadorAtual() + "!!!!! VOCE FOI O VENCEDOR!!!!");
 		}
 	}
 	
