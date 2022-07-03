@@ -1,7 +1,10 @@
 package aplicacao;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import xadrez.Cor;
 import xadrez.PartidaXadrez;
@@ -72,10 +75,16 @@ public class UI {
 	}
 	
 	//metodo para exibir o turno e o jogador atual imprimindo entao a partida e nao somente o tabuleiro
-	public static void imprimirPartida(PartidaXadrez partidaXadrez) {
+	public static void imprimirPartida(PartidaXadrez partidaXadrez, List<PecaXadrez> pecaCapturada) {
 		//imprimir o tabuleiro
 		imprimirTabuleiro(partidaXadrez.getPecas());
+		//quebra de linha
 		System.out.println();
+		//após impressao do tabuleiro será impresso a lista de pecas capturadas
+		imprimirPecasCapturadas(pecaCapturada);
+		//quebra de linha
+		System.out.println();
+
 		System.out.println("Turno: " + partidaXadrez.getTurno());
 		System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
 		
@@ -155,5 +164,32 @@ public class UI {
 		System.out.print(" ");
 	}
 	
+	//método para impressao no tabuleiro das pecas capturadas
+	//recebendo uma lista de pecas de xadrez para fazer a impressao
+	private static void imprimirPecasCapturadas(List<PecaXadrez> pecaCapturada) {
+		//lógica do método usando filtragem de lista(lambda)
+		List<PecaXadrez> pecasBrancas = pecaCapturada.stream().filter(x -> x.getCor() == Cor.BRANCO).collect(Collectors.toList());
+		List<PecaXadrez> pecasPretas = pecaCapturada.stream().filter(x -> x.getCor() == Cor.PRETO).collect(Collectors.toList());
+		System.out.println("Pecas Capturadas: ");
+		//logica para impressao de pecas brancas
+		System.out.print("Pecas Brancas: ");
+		//imprecao na cor branca
+		System.out.print(ANSI_BRANCO);
+		//padrão para impressao de um array de valores 
+		System.out.println(Arrays.toString(pecasBrancas.toArray()));
+		//ansi resetar para resetar a cor da impressao
+		System.out.print(ANSI_RESETAR);
+		
+		// logica para impressao de pecas pretas
+		System.out.print("Pecas Pretas: ");
+		// imprecao na cor preta
+		System.out.print(ANSI_AMARELO);
+		// padrão para impressao de um array de valores
+		System.out.println(Arrays.toString(pecasPretas.toArray()));
+		// ansi resetar para resetar a cor da impressao
+		System.out.print(ANSI_RESETAR); 
+		
+		
+	}
 
 }

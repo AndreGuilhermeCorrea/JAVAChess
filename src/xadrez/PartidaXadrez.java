@@ -1,5 +1,8 @@
 package xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tabuleiroJogo.Peca;
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
@@ -16,6 +19,12 @@ public class PartidaXadrez {
 	private int turno;
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
+	//declaracao das listas de pecas no tabuleiro e capturadas
+	//chamada de pecas capturadas por meio de 2 listas quais estao no tabuleiro e quais sao as pecas capturadas
+	//ps a lista poderia ser instanciada no construtor mas deixando na declaracao garante que vai ser iniciada na criacao da partida de xadrez(indiferente)
+	private List<Peca> pecasTabuleiro = new ArrayList<>();
+	//declaracao da lista de pecas capturadas
+	private List<Peca> pecasCapturadas = new ArrayList<>();
 	
 	//Construtor
 	//método para atribuir o tamanho do tabuleiro
@@ -100,6 +109,10 @@ public class PartidaXadrez {
 		Peca capturaPeca = tabuleiro.removePeca(destino);
 		//entrada da peca de origem para peca de destino
 		tabuleiro.localPeca(p, destino);
+		//teste para saber se a peca é diferente de nulo e 
+		//remover peca da lista de pecas no tabuleiro 
+		pecasCapturadas.add(capturaPeca);
+		
 		//programa entao retorna a peca capturada
 		return capturaPeca;
 	}
@@ -136,6 +149,10 @@ public class PartidaXadrez {
 		
 	}
 	
+	
+
+	
+	
 	//Métodos para proximo Turno(partida)
 	//esse método será chamado apenas apos ser executada uma jogada
 	private void proximoTurno() {
@@ -151,10 +168,15 @@ public class PartidaXadrez {
 	//instanciaçao da operação paraPosicao informando as coordenadas do sistema do xadrez e nao o sistema da matriz
 	//esse método é uma operação de colocar pecas passando as posicoes nas coordenadas do xadrez
 	private void novaPosicaoPeca(char coluna, int linha, PecaXadrez peca) {
-		//método chamara o tabuleiro passando a peca por uma instanciacao da posicao do xadrez pelos dados para uma posicao de matriz
+		//(coloca pecas no tabuleiro), método chamara o tabuleiro passando a peca por uma instanciacao da posicao do xadrez pelos dados para uma posicao de matriz
 		tabuleiro.localPeca(peca, new PosicaoXadrez(coluna, linha).paraPosicao());
-		
+		//(coloca pecas na lista de pecas no tabuleiro)
+		pecasTabuleiro.add(peca);
 	}
+	
+	
+	
+
 	
 	//método iniciar da partida de xadrez
 	//responsável por iniciar a partida colocando as peças no tabuleiro

@@ -1,6 +1,8 @@
 package aplicacao;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import xadrez.ExcecaoXadrez;
@@ -15,6 +17,8 @@ public class Programa {
 		Scanner sc = new Scanner(System.in);
 		
 		PartidaXadrez partidaXadrez = new PartidaXadrez(); 
+		//declaracao da lista de pecas
+		List<PecaXadrez> pecaCapturada = new ArrayList<>();
 		
 		while (true) {
 			
@@ -22,7 +26,7 @@ public class Programa {
 			try {
 				//chamada do método para limpar terminal
 				UI.limpaTerminal();
-				UI.imprimirPartida(partidaXadrez);
+				UI.imprimirPartida(partidaXadrez, pecaCapturada);
 				System.out.println();
 				System.out.print("Origem ");
 				PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);
@@ -34,7 +38,13 @@ public class Programa {
 				System.out.println();
 				System.out.print("Destino ");
 				PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
+				
+				//sempre que o movimento for executado essa peça será adicionado a lista de pecas capturadas por meio da condição abaixo
 				PecaXadrez capturaPeca = partidaXadrez.executarMovimentoXadrez(origem, destino);
+				if (capturaPeca != null) {
+					pecaCapturada.add(capturaPeca);
+
+				}
 				
 
 			}
