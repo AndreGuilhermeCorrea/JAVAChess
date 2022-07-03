@@ -69,10 +69,19 @@ public class PartidaXadrez {
 	
 	
 	//implementação da operacao validacaoPosicaoOrigem recebendo uma posicao
+	//esse método portanto possui 2 verificações 
 	private void validacaoPosicaoOrigem(Posicao posicao) {
 		//teste negado, ou seja se nao existir peca na posicao sera lancado a exceção
 		if (!tabuleiro.pecaNaPosicao(posicao)) {
 			throw new ExcecaoXadrez("Existe uma peca na posicao de origem!!!");
+		}
+		//validar posicao de origem de uma peca, pois quando fizer o movimento dessa a origem deverá ser validada 
+		//teste para saber se existe movimentos possiveis para a peca caso nao exista essa peça nao podera ser utilizada como origem
+		//se nao existir movimento possivel será lancada uma exceção
+		if (!tabuleiro.peca(posicao).umPossivelMovimento()) {
+			//exceção
+			throw new ExcecaoXadrez("Não existe movimentos possíveis para a peça escolhida!!!");
+		
 		}
 		
 	}

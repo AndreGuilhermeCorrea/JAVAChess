@@ -21,4 +21,12 @@ public class Torre extends PecaXadrez {
 	public String toString() {
 		return "T";//essa letra entrará na impressao do tabuleiro, ou seja no local da peça aparecerá a letra
 	}
+
+
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		//matriz de boolean na mesma dimensão do tabuleiro
+		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return mat;
+	}
 }
