@@ -44,6 +44,11 @@ public class Posicao {
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
+	//método para atualizar os valores de uma posicao 
+	public void setValores(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
+	}
 	
 	//tostring para imprimir a posição na tela
 	//afirmando que a classe objetivo é a superclasse de todas as classes

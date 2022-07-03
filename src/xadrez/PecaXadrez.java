@@ -1,6 +1,7 @@
 package xadrez;
 
 import tabuleiroJogo.Peca;
+import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
 
 public abstract class PecaXadrez extends Peca{
@@ -19,12 +20,13 @@ public abstract class PecaXadrez extends Peca{
 	public Cor getCor() {
 		return cor;
 	}
+	
+	//implementação do método para verificar se existe uma peca adversária na posicao
+	protected boolean existePecaOponente(Posicao posicao) {
+		//teste com downcasting para saber se a peça p é adversária se o p é diferente de nulo e se p é diferente da cor da minha peca
+		PecaXadrez p = (PecaXadrez)getTabuleiro().peca(posicao);
+		return p != null && p.getCor() != cor;
+	}
 
 
-	
-	
-	
-	
-	
-	
 }

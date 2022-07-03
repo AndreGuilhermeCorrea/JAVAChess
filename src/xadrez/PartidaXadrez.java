@@ -46,8 +46,13 @@ public class PartidaXadrez {
 		//conversao das 02 posicoes para posicao da matriz
 		Posicao origem = posicaoOrigem.paraPosicao();
 		Posicao destino = posicaoDestino.paraPosicao();
+		
 		//validacao da posicao de origem, caso nao exista será lancado uma excessão atravez da implementacao da operaçao no metodo abaixo
 		validacaoPosicaoOrigem(origem);
+		
+		//validacao da posicao de destino, caso nao exista será lancado uma excessão atravez da implementacao da operaçao no metodo abaixo
+		validacaoPosicaoDestino(origem, destino);
+		
 		//caso nao ocorra exceção a variavel declarada com o nome capturaPeca receberá o resultado da operacao fazermover responsavel por realizar o movimento da peca
 		Peca capturaPeca = fazerMover(origem, destino);
 		//retorno da peca capturada por meio de um downCasting para pecaXadrez pois essa peca capturada era do tipo peca
@@ -82,6 +87,14 @@ public class PartidaXadrez {
 			//exceção
 			throw new ExcecaoXadrez("Não existe movimentos possíveis para a peça escolhida!!!");
 		
+		}
+		
+	}
+	private void validacaoPosicaoDestino(Posicao origem, Posicao destino) {
+		//teste para validação atraves da posicao de destino (se é movimento possível) em relação a peca origem
+		if (!tabuleiro.peca(origem).movimentoPossivel(destino)) {
+			//tratamento da exceção
+			throw new ExcecaoXadrez("A peça escolhida nao pode ser movida para a posicao de destino!!!");
 		}
 		
 	}
