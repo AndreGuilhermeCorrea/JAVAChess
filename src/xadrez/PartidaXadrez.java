@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import tabuleiroJogo.Peca;
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
+import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
@@ -140,8 +141,10 @@ public class PartidaXadrez {
 
 	// implementação da operacao fazerMover (fazer movimento)
 	private Peca fazerMover(Posicao origem, Posicao destino) {
-		// saída da peca na posicao de origem
-		Peca p = tabuleiro.removePeca(origem);
+		// saída da peca na posicao de origem com downcasting
+		PecaXadrez p =(PecaXadrez)tabuleiro.removePeca(origem);
+		p.aumentarContagemMovimentos();
+		
 		// remover possivel peca que estiver na posicao de destino passando portanto a
 		// ser a peca capturada
 		Peca pecaCapturada = tabuleiro.removePeca(destino);
@@ -159,8 +162,9 @@ public class PartidaXadrez {
 
 	// implementação da operacao desfazerMover (desfazer movimento)
 	private void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada) {
-		// saida da peça do destino
-		Peca p = tabuleiro.removePeca(destino);
+		// saida da peça do destino com downcasting
+		PecaXadrez p =(PecaXadrez)tabuleiro.removePeca(destino);
+		p.diminuirContagemMovimentos();
 		// retorno da peca na posicao de origem
 		tabuleiro.localPeca(p, origem);
 
@@ -311,16 +315,40 @@ public class PartidaXadrez {
 	private void iniciarPartida() {
 		// colocar uma peca y da cor z na posicao x
 		
+		//peoes brancos
+		novaPosicaoPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('d', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('e', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('f', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('g', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
+		
 		//torre branca
-		novaPosicaoPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));
-		novaPosicaoPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novaPosicaoPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
 		//rei branco
 		novaPosicaoPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
 		
+		
+		
+		//peoes pretos
+		novaPosicaoPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('d', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('e', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('f', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('g', 7, new Peao(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('h', 7, new Peao(tabuleiro, Cor.PRETO));
+		
+		
 		//torre preto
-		novaPosicaoPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
 		//rei preto
-		novaPosicaoPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
+		novaPosicaoPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 
 }
