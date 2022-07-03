@@ -22,7 +22,7 @@ public class Programa {
 			try {
 				//chamada do método para limpar terminal
 				UI.limpaTerminal();
-				UI.imprimirTabuleiro(partidaXadrez.getPecas());
+				UI.imprimirPartida(partidaXadrez);
 				System.out.println();
 				System.out.print("Origem ");
 				PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);

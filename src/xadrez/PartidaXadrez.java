@@ -13,17 +13,34 @@ public class PartidaXadrez {
 	
 	// no momento de criar a partida cria-se um tabuleiro 8x8 e chama iniciar partida
 	
+	private int turno;
+	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	
 	//Construtor
 	//método para atribuir o tamanho do tabuleiro
 	public PartidaXadrez() {
 		tabuleiro = new Tabuleiro(8, 8);
+		turno = 1;
+		jogadorAtual = Cor.BRANCO;
 		//iniciar a partida no construtor
 		iniciarPartida();
 	}
 	
 
+	//métodos gethers turno e jogadorAtual
+	public int getTurno() {
+		return turno;
+	}
+
+
+	public Cor getJogadorAtual() {
+		return jogadorAtual;
+	}
+
+	
+	
+	
 	//método para retornar uma matriz de pecas de xadrez nessa partida
 	//para que o programa conheca apenas a camada de xadrez e nao a camada de tabuleiro
 	public PecaXadrez[][] getPecas(){
@@ -40,6 +57,8 @@ public class PartidaXadrez {
 		return mat;
 	}
 	
+
+
 	//operação de movimentos possiveis dada uma posicao e poder imprimir as posiçoes possiveis apartir da posicao de origem
 	//retornando uma matriz de boolean contendo as posiçoes possiveis para que a aplicação possa colorir o fundo de cada posicao
 	public boolean[][] movimentosPossiveis(PosicaoXadrez posicaoOrigem){
@@ -66,6 +85,8 @@ public class PartidaXadrez {
 		
 		//caso nao ocorra exceção a variavel declarada com o nome capturaPeca receberá o resultado da operacao fazermover responsavel por realizar o movimento da peca
 		Peca capturaPeca = fazerMover(origem, destino);
+		//chamada do método trocar turno apos a partida
+		proximoTurno();
 		//retorno da peca capturada por meio de um downCasting para pecaXadrez pois essa peca capturada era do tipo peca
 		return (PecaXadrez)capturaPeca;
 		
@@ -91,6 +112,11 @@ public class PartidaXadrez {
 		if (!tabuleiro.pecaNaPosicao(posicao)) {
 			throw new ExcecaoXadrez("Ja existe uma peca na posicao de origem!!!");
 		}
+		//teste para saber se jogador esta movendo peca do adversário
+		if (jogadorAtual != ((PecaXadrez)tabuleiro.peca(posicao)).getCor())
+			//excecao em caso teste seja verdadeiro
+			throw new ExcecaoXadrez("A peça escolhida nao te pertence!");
+			
 		//validar posicao de origem de uma peca, pois quando fizer o movimento dessa a origem deverá ser validada 
 		//teste para saber se existe movimentos possiveis para a peca caso nao exista essa peça nao podera ser utilizada como origem
 		//se nao existir movimento possivel será lancada uma exceção
@@ -109,6 +135,17 @@ public class PartidaXadrez {
 		}
 		
 	}
+	
+	//Métodos para proximo Turno(partida)
+	//esse método será chamado apenas apos ser executada uma jogada
+	private void proximoTurno() {
+		//incremento do turno
+		turno++;
+		//expressão condicional ternária para determinar o jogador branco
+		//se o jogador atual for igual(==) a cor branca entao (?) será cor preto caso contrário ( : ) sera branco
+		jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
+	}
+	
 	
 	
 	//instanciaçao da operação paraPosicao informando as coordenadas do sistema do xadrez e nao o sistema da matriz

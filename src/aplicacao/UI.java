@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import xadrez.Cor;
+import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
@@ -69,6 +70,19 @@ public class UI {
 		}
 
 	}
+	
+	//metodo para exibir o turno e o jogador atual imprimindo entao a partida e nao somente o tabuleiro
+	public static void imprimirPartida(PartidaXadrez partidaXadrez) {
+		//imprimir o tabuleiro
+		imprimirTabuleiro(partidaXadrez.getPecas());
+		System.out.println();
+		System.out.println("Turno: " + partidaXadrez.getTurno());
+		System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+		
+	}
+	
+	
+	
 	
 	// criação do método Imprimir tabuleiro
 	public static void imprimirTabuleiro(PecaXadrez[][] pecas) {
