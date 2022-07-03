@@ -25,7 +25,7 @@ public class Tabuleiro {
 	public Tabuleiro(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
 			// se o teste acima ser verdadeiro será lancado uma exceção (throw)
-			throw new ExcecaoTabuleiro("Erro na criação do tabuleiro!!!");
+			throw new ExcecaoTabuleiro("Erro na criacao do tabuleiro!!!");
 
 		}
 		this.linhas = linhas;
@@ -56,7 +56,7 @@ public class Tabuleiro {
 		if (!posicaoExistente(linha, coluna)) {
 
 			// se essa posicao nao existir será lancado uma nova exceção
-			throw new ExcecaoTabuleiro("Essa posição nao existe!!!");
+			throw new ExcecaoTabuleiro("Essa posicao nao existe!!!");
 		}
 
 		// método retorna matriz pecas na linha e coluna
@@ -70,7 +70,7 @@ public class Tabuleiro {
 		if (!posicaoExistente(posicao)) {
 
 			// se essa posicao nao existir será lancado uma nova exceção
-			throw new ExcecaoTabuleiro("Essa posição nao existe!!!");
+			throw new ExcecaoTabuleiro("Essa posicao nao existe!!!");
 		}
 
 		// métoro retornara a peca pela posicao
@@ -83,7 +83,7 @@ public class Tabuleiro {
 		if (pecaNaPosicao(posicao)) {
 
 			// será portanto lançado uma exceção
-			throw new ExcecaoTabuleiro("Já existe uma peça nessa posição!!! " + posicao);
+			throw new ExcecaoTabuleiro("Ja existe uma peca nessa posicao!!! " + posicao);
 
 		}
 		// na matriz de peca do tabuleiro instanciada no construtor
@@ -104,7 +104,7 @@ public class Tabuleiro {
 		//programação defensiva com teste
 		 // se essa posicao nao existir será lancado uma nova exceção por meio de um teste if
 		if (!posicaoExistente(posicao))
-		throw new ExcecaoTabuleiro("Essa posição nao existe!!!");
+		throw new ExcecaoTabuleiro("Essa posicao nao existe!!!");
 		//teste para saber se a peca na posicao é igual a nulo
 		//ou seja se for verdade nao existe peca albuma na posicao
 		if (peca(posicao) == null) {
@@ -145,7 +145,7 @@ public class Tabuleiro {
 		if (!posicaoExistente(posicao)) {
 
 			// se essa posicao nao existir será lancado uma nova exceção
-			throw new ExcecaoTabuleiro("Essa posição nao existe!!!");
+			throw new ExcecaoTabuleiro("Essa posicao nao existe!!!");
 		}
 		//retorno com teste se possui peca na posicao da matriz dessa posicao
 		return peca(posicao) != null;

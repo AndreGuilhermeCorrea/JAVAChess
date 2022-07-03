@@ -40,6 +40,17 @@ public class PartidaXadrez {
 		return mat;
 	}
 	
+	//operação de movimentos possiveis dada uma posicao e poder imprimir as posiçoes possiveis apartir da posicao de origem
+	//retornando uma matriz de boolean contendo as posiçoes possiveis para que a aplicação possa colorir o fundo de cada posicao
+	public boolean[][] movimentosPossiveis(PosicaoXadrez posicaoOrigem){
+		//conversao dessa posicao de xadrez para uma posicao de matriz
+		Posicao posicao = posicaoOrigem.paraPosicao();
+		//validação da posicao de origem
+		validacaoPosicaoOrigem(posicao);
+		//retornar os movimentos possiveis da peca nessa posicao
+		return tabuleiro.peca(posicao).movimentosPossiveis();
+		
+	}
 	
 	//método para executar o movimento do xadrez com posição de origem, posicao de destino retornando entao uma posicao capturada
 	public PecaXadrez executarMovimentoXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
@@ -78,14 +89,14 @@ public class PartidaXadrez {
 	private void validacaoPosicaoOrigem(Posicao posicao) {
 		//teste negado, ou seja se nao existir peca na posicao sera lancado a exceção
 		if (!tabuleiro.pecaNaPosicao(posicao)) {
-			throw new ExcecaoXadrez("Existe uma peca na posicao de origem!!!");
+			throw new ExcecaoXadrez("Ja existe uma peca na posicao de origem!!!");
 		}
 		//validar posicao de origem de uma peca, pois quando fizer o movimento dessa a origem deverá ser validada 
 		//teste para saber se existe movimentos possiveis para a peca caso nao exista essa peça nao podera ser utilizada como origem
 		//se nao existir movimento possivel será lancada uma exceção
 		if (!tabuleiro.peca(posicao).umPossivelMovimento()) {
 			//exceção
-			throw new ExcecaoXadrez("Não existe movimentos possíveis para a peça escolhida!!!");
+			throw new ExcecaoXadrez("Nao existe movimentos possiveis para a peca escolhida!!!");
 		
 		}
 		
@@ -94,7 +105,7 @@ public class PartidaXadrez {
 		//teste para validação atraves da posicao de destino (se é movimento possível) em relação a peca origem
 		if (!tabuleiro.peca(origem).movimentoPossivel(destino)) {
 			//tratamento da exceção
-			throw new ExcecaoXadrez("A peça escolhida nao pode ser movida para a posicao de destino!!!");
+			throw new ExcecaoXadrez("A peca escolhida nao pode ser movida para a posicao de destino!!!");
 		}
 		
 	}

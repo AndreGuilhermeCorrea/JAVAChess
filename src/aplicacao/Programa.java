@@ -27,10 +27,15 @@ public class Programa {
 				System.out.print("Origem ");
 				PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);
 				
+				boolean[][] movimentosPossiveis = partidaXadrez.movimentosPossiveis(origem);
+				UI.limpaTerminal();
+				UI.imprimirTabuleiro(partidaXadrez.getPecas(), movimentosPossiveis);
+								
 				System.out.println();
 				System.out.print("Destino ");
 				PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
 				PecaXadrez capturaPeca = partidaXadrez.executarMovimentoXadrez(origem, destino);
+				
 
 			}
 			//tratamento da excecao no xadrez

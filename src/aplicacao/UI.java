@@ -29,40 +29,46 @@ public class UI {
 	public static final String ANSI_ROSA_FUNDO = "\u001B[45m";
 	public static final String ANSI_AZULCLARO_FUNDO = "\u001B[46m";
 	public static final String ANSI_BRANCO_FUNDO = "\u001B[47m";
-	
-	//método para limpar terminal ao realizar jogada
+
+	// método para limpar terminal ao realizar jogada
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
-	
+
 	public static void limpaTerminal() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 	
-	//método para ler a posicao do usuario atravéz do scanner do programa principal
-	//scanner instanciado no programa principal passando como argumento nesse método
-		public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
-			//a operação do método é inserido em um bloco try para que se ocorra algum runtime que vier a ocorrer é lancado uma exceção (throw new InputMismatchException)
+	// método para ler a posicao do usuario atravéz do scanner do programa principal
+	// scanner instanciado no programa principal passando como argumento nesse
+	// método
+	public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
+		// a operação do método é inserido em um bloco try para que se ocorra algum
+		// runtime que vier a ocorrer é lancado uma exceção (throw new
+		// InputMismatchException)
 		try {
-			//leitura da posicao pelo mesmo scanner
+			// leitura da posicao pelo mesmo scanner
 			String s = sc.nextLine();
-			//variavel coluna tipo char recebendo char at0 pois a coluna de caractere é o 1º caractere do string 
+			// variavel coluna tipo char recebendo char at0 pois a coluna de caractere é o
+			// 1º caractere do string
 			char coluna = s.charAt(0);
-			//leitura da linha pela variavel linha tipo int recebendo a posicao 1 da string
-			//ou seja é feito um recorte da string na posicao 1 (s.substring(1)) e fazendo a conversao do resultado para inteiro(Integer.parseInt)
+			// leitura da linha pela variavel linha tipo int recebendo a posicao 1 da string
+			// ou seja é feito um recorte da string na posicao 1 (s.substring(1)) e fazendo
+			// a conversao do resultado para inteiro(Integer.parseInt)
 			int linha = Integer.parseInt(s.substring(1));
-			//o metodo portanto retorna uma nova posicao de xadrez com essa coluna e essa linha
+			// o metodo portanto retorna uma nova posicao de xadrez com essa coluna e essa
+			// linha
 			return new PosicaoXadrez(coluna, linha);
-		
+
 		}
 		//
 		catch (RuntimeException e) {
-			//exceção instanciada com a frase e lançada caso ocorra erros na entrada de dados
-			throw new InputMismatchException("Erro na leitura da posição do xadrez!!!");
-			
-		}
-		
-	}
+			// exceção instanciada com a frase e lançada caso ocorra erros na entrada de
+			// dados
+			throw new InputMismatchException("Erro na leitura da posicao do xadrez!!!");
 
+		}
+
+	}
 	
 	// criação do método Imprimir tabuleiro
 	public static void imprimirTabuleiro(PecaXadrez[][] pecas) {
@@ -84,7 +90,10 @@ public class UI {
 			System.out.print((8 - i) + " ");
 
 			for (int j = 0; j < pecas.length; j++) {
-				imprimirPeca(pecas[i][j]);
+				// false para indicar que nenhuma peça deve ter o fundo colorido
+				// porem quando for impresso o tabuleiro considerando o método para imprimir os
+				// mvimentos possiveis
+				imprimirPeca(pecas[i][j], false);
 			}
 			// quebra de linha
 			System.out.println();
@@ -94,15 +103,32 @@ public class UI {
 
 	}
 
+	// Método Imprimir tabuleiro recebendo a matriz de movimentos possiveis
+	// dependendo da variavel de movimentos possiveis
+	public static void imprimirTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
+		for (int i = 0; i < pecas.length; i++) {
+			System.out.print((8 - i) + " ");
+			for (int j = 0; j < pecas.length; j++) {
+				imprimirPeca(pecas[i][j], movimentosPossiveis[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println("  a b c d e f g h");
+
+	}
 	
-	// método auxiliar para imprimir uma unica peca
-	private static void imprimirPeca(PecaXadrez peca) {
+	// método auxiliar para imprimir uma unica peca e colorir o fundo da peca
+	private static void imprimirPeca(PecaXadrez peca, boolean fundo) {
+		// teste para saber se vai ou nao colorir o fundo da posicao dependendo da
+		// variavel fundo
+		if (fundo) {
+			System.out.print(ANSI_AZULCLARO_FUNDO);
+		}
 		// condição para testar se essqa peça for igual a nulo significa que nao tinha
 		// peca nessa posição do tabuleiro
-
 		if (peca == null) {
 			// imprimindo portanto na tela o (-)
-			System.out.print("-");
+			System.out.print("-" + ANSI_RESETAR);
 			// caso contrario será impresso a peca
 		} else {
 			if (peca.getCor() == Cor.BRANCO) {
