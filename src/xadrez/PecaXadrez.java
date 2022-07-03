@@ -21,6 +21,13 @@ public abstract class PecaXadrez extends Peca{
 		return cor;
 	}
 	
+	//método para retornar a posicao no formato do xadrez (letra e Numero)
+	public PosicaoXadrez getPosicaoXadrez() {
+		//conversao da posicao herdada da peca para a posicao xadrez 
+		//atravez do método estatico da posicaoxadrez
+		return PosicaoXadrez.dePosicao(posicao);	
+	}
+	
 	//implementação do método para verificar se existe uma peca adversária na posicao
 	protected boolean existePecaOponente(Posicao posicao) {
 		//teste com downcasting para saber se a peça p é adversária se o p é diferente de nulo e se p é diferente da cor da minha peca

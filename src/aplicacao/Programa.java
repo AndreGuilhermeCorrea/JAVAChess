@@ -41,6 +41,7 @@ public class Programa {
 				
 				//sempre que o movimento for executado essa peça será adicionado a lista de pecas capturadas por meio da condição abaixo
 				PecaXadrez capturaPeca = partidaXadrez.executarMovimentoXadrez(origem, destino);
+				
 				if (capturaPeca != null) {
 					pecaCapturada.add(capturaPeca);
 

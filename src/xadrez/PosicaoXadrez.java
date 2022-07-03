@@ -39,7 +39,7 @@ public class PosicaoXadrez {
 
 	protected static PosicaoXadrez dePosicao(Posicao posicao) {
 		//retornando inverso do método paraPosicao
-		return new PosicaoXadrez((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
+		return new PosicaoXadrez((char)('a' + posicao.getColuna()), 8 - posicao.getLinha());
 	}
 
 	//toString da posicao

@@ -76,21 +76,22 @@ public class UI {
 	
 	//metodo para exibir o turno e o jogador atual imprimindo entao a partida e nao somente o tabuleiro
 	public static void imprimirPartida(PartidaXadrez partidaXadrez, List<PecaXadrez> pecaCapturada) {
-		//imprimir o tabuleiro
+		// imprimir o tabuleiro
 		imprimirTabuleiro(partidaXadrez.getPecas());
-		//quebra de linha
+		// quebra de linha
 		System.out.println();
-		//após impressao do tabuleiro será impresso a lista de pecas capturadas
+		// após impressao do tabuleiro será impresso a lista de pecas capturadas
 		imprimirPecasCapturadas(pecaCapturada);
-		//quebra de linha
+		// quebra de linha
 		System.out.println();
 
 		System.out.println("Turno: " + partidaXadrez.getTurno());
 		System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
-		
+		// teste partida em xeque e impressão
+		if (partidaXadrez.getXeque()) {
+			System.out.println("XEQUE!!!");
+		}
 	}
-	
-	
 	
 	
 	// criação do método Imprimir tabuleiro
