@@ -47,7 +47,16 @@ public class Programa {
 
 				}
 				
-
+				if (partidaXadrez.getPromocao() != null) {
+					System.out.print("Entre com a peça que deseja promover: (B/C/T/Q) ");
+					String type = sc.nextLine().toUpperCase();
+					while (!type.equals("B") && !type.equals("T") && !type.equals("C") && !type.equals("Q")) {
+						System.out.print("Valor inválido! Entre com a peça que deseja promover: (B/C/T/Q) ");
+						type = sc.nextLine().toUpperCase();
+					}
+					partidaXadrez.substituirPecaPromovida(type);					
+				}
+		
 			}
 			//tratamento da excecao no xadrez
 			catch (ExcecaoXadrez e) {
