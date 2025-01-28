@@ -13,13 +13,46 @@ Este é um projeto de um jogo de xadrez desenvolvido em JAVA em Julho de 2022, d
 
 O xadrez é um jogo de tabuleiro de natureza recreativa e competitiva para dois jogadores. Embora tenha por base um tabuleiro, o xadrez é considerado um jogo de mesa, não um jogo de tabuleiro. O xadrez é praticado por milhões de pessoas em todo o mundo, sendo também uma modalidade de competição, com torneios nacionais e internacionais organizados pela FIDE (Federação Internacional de Xadrez).
 
-Os xadristas dispõem de 16 peças cada um, sendo elas: 1 rei, 1 dama, 2 torres, 2 cavalos, 2 bispos e 8 peões. O objetivo do jogo é dar xeque-mate no rei adversário. Isso ocorre quando o rei está em uma posição tal que não pode se mover para nenhuma casa sem ser capturado por uma peça adversária. O xeque-mate é a jogada que encerra a partida, sendo a vitória do jogador que o aplicou. O xadrez é um jogo de estratégia, onde a habilidade e a experiência do jogador são fundamentais para a vitória.
+<img src="img/tb.png" alt="Torre" width="45"/>
+<img src="img/cb.png" alt="Cavalo" width="45"/>
+<img src="img/qb.png" alt="Rainha" width="45"/>
+<img src="img/kb.png" alt="Rei" width="45"/>
+<img src="img/bb.png" alt="Bispo" width="45"/>
+<img src="img/pb.png" alt="Peão" width="45"/>
 
-## 🎮 Screenshots
+
+Os xadristas dispõem de 16 peças cada um, sendo elas: 1 rei, 1 dama, 2 torres, 2 cavalos, 2 bispos e 8 peões. O objetivo do jogo é dar xeque-mate no rei adversário. Isso ocorre quando o rei está em uma posição tal que não pode se mover para nenhuma casa sem ser capturado por uma peça adversária. O xeque-mate é a jogada que encerra a partida, sendo a vitória do jogador que o aplicou. O xadrez é um jogo de estratégia, onde a habilidade e a experiência do jogador são fundamentais para a vitória.
 
 ## 🛠️ Conceitos de Programação Utilizados
 
+- Programação Orientada a Objetos (POO)
+- Encapsulamento
+- Herança
+- Polimorfismo
+- Enumerações
+- Tratamento de Exceções
+- Matrizes e Listas
+- Composição
+- Sobrecarga
+- Sobrescrita
+- Downcasting
+- Upcasting
+- Classe Abstrata
+- Interface
+- Métodos Estáticos
+- Métodos Abstratos
+- Modificadores de Acesso
+- Construtores
+- toString
+- Equals e HashCode
+
+
 ## 📚 Referências
+
+- [JAVA](https://www.w3schools.com/java/java_ref_reference.asp)
+- [Udemy](https://www.udemy.com/course/java-curso-completo/)
+- [Nelio Alves](https://www.udemy.com/user/nelio-alves/)
+- [Wikipedia](https://pt.wikipedia.org/wiki/Xadrez)
 
 ## 👩‍💻 Autor
 
